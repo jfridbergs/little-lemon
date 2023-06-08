@@ -11,9 +11,10 @@ import androidx.navigation.compose.composable
 import com.example.littlelemon.Home
 import com.example.littlelemon.UserProfile
 import com.example.littlelemon.Onboarding
+import com.example.littlelemon.data.MenuItemRoom
 
 @Composable
-fun Navigation(navController: NavHostController){
+fun Navigation(navController: NavHostController, menuItems: List<MenuItemRoom>){
 
     val context = LocalContext.current
     val sharedPreferences by lazy {
@@ -25,7 +26,7 @@ fun Navigation(navController: NavHostController){
         startDestination = if(  name.equals("no name was stored")) Onboarding.route else Home.route
     ) {
         composable(Home.route) {
-            Home(navController = navController)
+            Home(navController = navController, menuItems = menuItems)
         }
         composable(UserProfile.route) {
             UserProfile(navController = navController)

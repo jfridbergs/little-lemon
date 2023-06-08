@@ -149,7 +149,7 @@ fun Onboarding(navController: NavHostController) {
                     apply()
                 }
                 Toast.makeText(context, context.getString(  R.string.registration_successful), Toast.LENGTH_SHORT).show()
-                navController.navigate(UserProfile.route)
+                navController.navigate(com.example.littlelemon.navigation.Home.route)
             }
                          },
             modifier = Modifier

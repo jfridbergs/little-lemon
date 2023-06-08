@@ -2,6 +2,7 @@ package com.example.littlelemon
 
 import android.content.Context.MODE_PRIVATE
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -52,8 +53,16 @@ fun UserProfile(navController: NavHostController){
     val lastName = sharedPreferences.getString("last_name", "no name was stored")
     val email = sharedPreferences.getString("email", "no name was stored")
 
-    val textBoxModifier = Modifier.fillMaxWidth().padding(top=10.dp, bottom=10.dp).background(colorResource(id = R.color.secondary3), shape = RoundedCornerShape(7.dp))
-        .border(1.dp, SolidColor(colorResource(id = R.color.secondary4)),shape = RoundedCornerShape(7.dp)).padding(7.dp)
+    val textBoxModifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 10.dp, bottom = 10.dp)
+        .background(colorResource(id = R.color.secondary3), shape = RoundedCornerShape(7.dp))
+        .border(
+            1.dp,
+            SolidColor(colorResource(id = R.color.secondary4)),
+            shape = RoundedCornerShape(7.dp)
+        )
+        .padding(7.dp)
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally){
         Image(painter = painterResource(id = R.drawable.logo),
             contentDescription = stringResource(id = R.string.logo_description),
@@ -119,6 +128,10 @@ fun UserProfile(navController: NavHostController){
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(R.color.primary2))) {
             Text(text = stringResource(id = R.string.logout), fontSize = 16.sp, color = colorResource(id = R.color.secondary4))
         }
+    }
+
+    BackHandler(true) {
+        navController.navigate(com.example.littlelemon.navigation.Home.route)
     }
 
 }
